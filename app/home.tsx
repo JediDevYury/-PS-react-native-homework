@@ -2,6 +2,7 @@ import {View, StyleSheet, Text, ImageBackground} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {Button} from "../shared/button";
 import {Colors, Fonts} from "../shared/tokens";
+
 export const Home = () => {
   return (
    <View style={styles.container}>
