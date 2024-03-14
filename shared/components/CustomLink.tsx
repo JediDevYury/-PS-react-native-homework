@@ -1,20 +1,20 @@
-import { Link } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
-import { Colors, FontSizes } from '../tokens';
-import { LinkProps } from 'expo-router/build/link/Link';
+import { Link } from "expo-router";
+import { StyleSheet, Text } from "react-native";
+import { Colors, FontSizes } from "../tokens";
+import { LinkProps } from "expo-router/build/link/Link";
 
 export function CustomLink({ text, ...props }: LinkProps & { text: string }) {
-  return (
-   <Link style={styles.link} {...props}>
-     <Text>{text}</Text>
-   </Link>
-  );
+	return (
+		<Link style={styles.link} {...props}>
+			<Text>{text}</Text>
+		</Link>
+	);
 }
 
 const styles = StyleSheet.create({
-  link: {
-    fontSize: FontSizes.fs16,
-    color: Colors.primary,
-    fontFamily: "Sora",
-  },
+	link: {
+		fontSize: FontSizes.fs16,
+		color: Colors.primary,
+		fontFamily: "Sora",
+	},
 });

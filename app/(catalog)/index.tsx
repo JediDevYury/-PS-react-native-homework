@@ -1,5 +1,5 @@
-import {Redirect} from 'expo-router';
+import { Redirect } from "expo-router";
 
 export default function TabIndex() {
-  return <Redirect href={'/(catalog)/main'} />;
+	return <Redirect href={"/(catalog)/main"} />;
 }

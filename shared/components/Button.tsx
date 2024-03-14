@@ -1,25 +1,15 @@
-import React from 'react';
-import {
-	Pressable,
-	Text,
-	StyleSheet,
-	GestureResponderEvent,
-	Animated, View
-} from 'react-native';
-import {Colors, FontFamily, FontSizes, Radius} from '../tokens';
+import React from "react";
+import { Pressable, Text, StyleSheet, GestureResponderEvent, Animated, View } from "react-native";
+import { Colors, FontFamily, FontSizes, Radius } from "../tokens";
 import { useRef } from "react";
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
 type ButtonProps = {
 	text: string;
 	style?: object;
 } & React.ComponentPropsWithoutRef<typeof Pressable>;
 
-const Button = forwardRef<View | null, ButtonProps>(
-(
-	{text, ...props},
- 	ref
-) => {
+const Button = forwardRef<View | null, ButtonProps>(({ text, ...props }, ref) => {
 	const fadeAnim = useRef(new Animated.Value(0)).current;
 
 	const backgroundColor = fadeAnim.interpolate({
@@ -46,10 +36,16 @@ const Button = forwardRef<View | null, ButtonProps>(
 	};
 
 	return (
-		<Pressable ref={ref} {...props} style={{
-			width: '100%',
-			...props.style,
-		}} onPressIn={fadeIn} onPressOut={fadeOut}>
+		<Pressable
+			ref={ref}
+			{...props}
+			style={{
+				...styles.container,
+				...props.style,
+			}}
+			onPressIn={fadeIn}
+			onPressOut={fadeOut}
+		>
 			<Animated.View
 				style={{
 					...styles.button,
@@ -63,11 +59,14 @@ const Button = forwardRef<View | null, ButtonProps>(
 });
 
 const styles = StyleSheet.create({
+	container: {
+		width: "100%",
+	},
 	button: {
 		marginTop: 24,
 		borderRadius: Radius.r16,
 		backgroundColor: Colors.primary,
-		alignItems: 'center',
+		alignItems: "center",
 	},
 	text: {
 		paddingVertical: 21,
