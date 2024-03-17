@@ -1,8 +1,13 @@
 import { Stack, useRouter } from "expo-router";
 import { Button } from "react-native";
+import { useCallback } from "react";
 
 export default function OrderLayout() {
 	const router = useRouter();
+
+	const handleBack = useCallback(() => {
+		router.replace("/");
+	}, [router]);
 
 	return (
 		<Stack>
@@ -10,7 +15,7 @@ export default function OrderLayout() {
 				name="index"
 				options={{
 					title: "Order",
-					headerLeft: () => <Button onPress={() => router.replace("/")} title="Back" />,
+					headerLeft: () => <Button onPress={handleBack} title="Back" />,
 				}}
 			/>
 			<Stack.Screen
