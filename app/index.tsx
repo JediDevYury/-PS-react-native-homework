@@ -40,7 +40,7 @@ export default function Home() {
 				</Animated.Text>
 				<Text style={styles.description}>Fresh beans, real Arabica and gentle roasting.</Text>
 				<Link href={"/(catalog)"} asChild>
-					<Button text={"Start"} />
+					<Button isLoading={false} text="Start" style={styles.startButton} />
 				</Link>
 			</LinearGradient>
 		</View>
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingHorizontal: 30,
 		paddingBottom: 34,
+		width: "100%",
 	},
 	title: {
 		fontFamily: FontFamily.SoraSemiBold,
@@ -80,5 +81,10 @@ const styles = StyleSheet.create({
 		fontSize: FontSizes.fs16,
 		textAlign: "center",
 		color: Colors.grayLight,
+	},
+	startButton: {
+		marginTop: 24,
+		height: 62,
+		width: "100%",
 	},
 });
