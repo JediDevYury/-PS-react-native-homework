@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import axios, { AxiosError } from "axios";
-import { Product, ProductState } from "@/entities/product/modal/product.interfaces";
+import { Params, Product, ProductState } from "@/entities/product/modal/product.interfaces";
 import { API } from "@/entities/auth/api/api";
 import { generateUrlWithQueryParams } from "@/shared/helpers";
 
@@ -10,28 +10,32 @@ const INITIAL_STATE: ProductState = {
 	error: null,
 };
 
-export const listOfCoffee = atom(INITIAL_STATE);
+export const productsQueryParams = atom<Params | null>(null);
 
-export const readWriteListOfCoffee = atom(
-	(get) => get(listOfCoffee),
-	async (get, set, params?) => {
-		set(listOfCoffee, {
+export const listOfCoffeeEntity = atom(INITIAL_STATE);
+
+export const listOfCoffee = atom(
+	(get) => get(listOfCoffeeEntity),
+	async (_, set, params: Params | null) => {
+		set(listOfCoffeeEntity, {
 			data: null,
 			isLoading: true,
 			error: null,
 		});
 
 		try {
-			const { data } = await axios.get<Product[]>(generateUrlWithQueryParams(API.getCoffeeList));
+			const { data } = await axios.get<Product[]>(
+				generateUrlWithQueryParams(API.getCoffeeList, params),
+			);
 
-			set(listOfCoffee, {
+			set(listOfCoffeeEntity, {
 				data,
 				isLoading: false,
 				error: null,
 			});
 		} catch (error) {
 			if (error instanceof AxiosError) {
-				set(listOfCoffee, {
+				set(listOfCoffeeEntity, {
 					data: null,
 					isLoading: false,
 					error: error,

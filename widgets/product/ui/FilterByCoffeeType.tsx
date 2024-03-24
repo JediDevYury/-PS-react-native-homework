@@ -1,32 +1,40 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, View } from "react-native";
 import { Colors, Gaps } from "@/shared/tokens";
-import { readWriteFilterByType } from "@/entities/product/modal/product.filter";
-import { useAtom } from "jotai";
 import FilterByCoffeeTypeItem from "@/widgets/product/ui/FilterByCoffeeTypeItem";
+import { useAtom } from "jotai";
+import { filterByProductType } from "@/entities/product/modal/product.filter";
 
 const FilterByCoffeeType = () => {
-	const [data, addFilter] = useAtom(readWriteFilterByType);
+	const [filter, setFilter] = useAtom(filterByProductType);
+
+	const handleFilter = (type: string) => {
+		setFilter(type);
+	};
 
 	return (
-		<FlatList
-			data={data}
-			renderItem={({ item: { type, active } }) => {
-				return <FilterByCoffeeTypeItem addFilter={addFilter} type={type} active={active} />;
-			}}
-			contentContainerStyle={styles.listContainer}
-			horizontal={true}
-			scrollEnabled
-			showsHorizontalScrollIndicator={false}
-		/>
+		<View style={styles.container}>
+			<FlatList
+				data={filter}
+				renderItem={({ item: { type, active } }) => {
+					return <FilterByCoffeeTypeItem setFilter={handleFilter} type={type} active={active} />;
+				}}
+				contentContainerStyle={styles.contentContainerStyle}
+				horizontal={true}
+				scrollEnabled
+				showsHorizontalScrollIndicator={false}
+			/>
+		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	listContainer: {
-		paddingHorizontal: 30,
+	container: {
 		marginTop: 16,
-		gap: Gaps.g8,
 		height: 38,
+	},
+	contentContainerStyle: {
+		paddingHorizontal: 30,
+		gap: Gaps.g8,
 		backgroundColor: Colors.background,
 	},
 });

@@ -6,14 +6,14 @@ import { Colors, FontFamily, FontSizes, Radius } from "@/shared/tokens";
 type FilterByCoffeeTypeItemProps = {
 	type: string;
 	active: boolean;
-	addFilter: (type: string) => void;
+	setFilter: (type: string) => void;
 };
 
-const FilterByCoffeeTypeItem = ({ type, active, addFilter }: FilterByCoffeeTypeItemProps) => {
+const FilterByCoffeeTypeItem = ({ type, active, setFilter }: FilterByCoffeeTypeItemProps) => {
 	return (
 		<Pressable
 			onPress={() => {
-				addFilter(type);
+				setFilter(type);
 			}}
 		>
 			{() => {

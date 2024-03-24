@@ -1,35 +1,15 @@
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import FilterByCoffeeType from "@/widgets/product/ui/FilterByCoffeeType";
 import { Colors } from "@/shared/tokens";
-import { SearchInput } from "@/shared/components/SearchInput";
 import ProductsList from "@/features/product/ui/ProductsList";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAtom } from "jotai";
-import { readWriteListOfCoffee } from "@/entities/product/modal/product.state";
+import Search from "@/widgets/product/ui/Search";
 
 export default function Main() {
-	const [state, fetchListOfCoffee] = useAtom(readWriteListOfCoffee);
-	const { isLoading } = state;
-
-	useEffect(() => {
-		fetchListOfCoffee();
-	}, []);
-
-	if (isLoading) return <ActivityIndicator />;
-
-	if (state.error) {
-		return (
-			<SafeAreaView>
-				<Text>Failed to fetch coffee list</Text>
-			</SafeAreaView>
-		);
-	}
-
 	return (
 		<View style={styles.container}>
 			<SafeAreaView style={styles.header}>
-				<SearchInput placeholder="Search coffee" />
+				<Search />
 			</SafeAreaView>
 			<View style={styles.content}>
 				<FilterByCoffeeType />

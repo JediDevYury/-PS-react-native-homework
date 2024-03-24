@@ -11,11 +11,8 @@ export interface Product {
 	rating: number;
 }
 
-export interface Filter {
-	[key: string]: {
-		active: boolean;
-		type: string;
-	};
+export interface Params {
+	[key: string]: string;
 }
 
 export enum COFFEE_TYPES {
@@ -31,7 +28,3 @@ export interface ProductState {
 	isLoading: boolean;
 	error: AxiosError | null;
 }
-
-export type FilterState = {
-	byCoffeeType: Filter;
-};

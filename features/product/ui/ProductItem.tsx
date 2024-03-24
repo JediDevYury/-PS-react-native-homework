@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 	},
 	imageBox: {
 		alignItems: "center",
-		minWidth: 142,
+		width: 142,
 		maxHeight: 132,
 		borderRadius: Radius.r16,
 	},

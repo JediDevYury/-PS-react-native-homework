@@ -43,6 +43,7 @@ export const FontFamily = {
 export const Gaps = {
 	g50: 50,
 	g16: 16,
+	g24: 24,
 	g12: 12,
 	g8: 8,
 	g4: 4,
