@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { atomWithReset } from "jotai/utils";
 import axios, { AxiosError } from "axios";
 import { Params, Product, ProductState } from "@/entities/product/modal/product.interfaces";
 import { API } from "@/entities/auth/api/api";
@@ -10,9 +11,9 @@ const INITIAL_STATE: ProductState = {
 	error: null,
 };
 
-export const productsQueryParams = atom<Params | null>(null);
+export const productsQueryParams = atomWithReset<Params | null>(null);
 
-export const listOfCoffeeEntity = atom(INITIAL_STATE);
+export const listOfCoffeeEntity = atomWithReset(INITIAL_STATE);
 
 export const listOfCoffee = atom(
 	(get) => get(listOfCoffeeEntity),

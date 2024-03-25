@@ -4,8 +4,19 @@ import { Colors } from "@/shared/tokens";
 import ProductsList from "@/features/product/ui/ProductsList";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Search from "@/widgets/product/ui/Search";
+import { useEffect } from "react";
+import { useResetAtom } from "jotai/utils";
+import { productFilter } from "@/entities/product/modal/product.filter";
 
 export default function Main() {
+	const resetProducts = useResetAtom(productFilter);
+
+	useEffect(() => {
+		return () => {
+			resetProducts();
+		};
+	}, []);
+
 	return (
 		<View style={styles.container}>
 			<SafeAreaView style={styles.header}>

@@ -1,18 +1,33 @@
 import { Text, StyleSheet, FlatList, ActivityIndicator, View } from "react-native";
 import { Colors, FontFamily, FontSizes, Gaps } from "@/shared/tokens";
-import { useAtom, useAtomValue } from "jotai/index";
+import { useAtom, useAtomValue } from "jotai";
+import { useResetAtom } from "jotai/utils";
 import ProductItem from "@/features/product/ui/ProductItem";
-import { listOfCoffee, productsQueryParams } from "@/entities/product/modal/product.state";
+import {
+	listOfCoffee,
+	listOfCoffeeEntity,
+	productsQueryParams,
+} from "@/entities/product/modal/product.state";
 import { useEffect } from "react";
 
 const ProductsList = () => {
 	const queryParams = useAtomValue(productsQueryParams);
 	const [entity, fetchListOfCoffee] = useAtom(listOfCoffee);
+	const resetListOfCoffee = useResetAtom(listOfCoffeeEntity);
+	const resetQueryParams = useResetAtom(productsQueryParams);
+
 	const { data: products, isLoading } = entity;
 
 	useEffect(() => {
 		fetchListOfCoffee(queryParams);
 	}, [queryParams]);
+
+	useEffect(() => {
+		return () => {
+			resetQueryParams();
+			resetListOfCoffee();
+		};
+	}, []);
 
 	if (isLoading) {
 		return (

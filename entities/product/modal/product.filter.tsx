@@ -1,4 +1,5 @@
-import { atom } from "jotai/index";
+import { atom } from "jotai";
+import { atomWithReset } from "jotai/utils";
 import { COFFEE_TYPES } from "@/entities/product/modal/product.interfaces";
 import { productsQueryParams } from "@/entities/product/modal/product.state";
 
@@ -10,7 +11,7 @@ export const INITIAL_FILTERS_BY_TYPE = {
 	byText: "",
 };
 
-export const productFilter = atom(INITIAL_FILTERS_BY_TYPE);
+export const productFilter = atomWithReset(INITIAL_FILTERS_BY_TYPE);
 
 export const filterByProductType = atom(
 	(get) => get(productFilter).byProductType,
