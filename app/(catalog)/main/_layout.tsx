@@ -15,7 +15,7 @@ export default function MainLayout() {
 				name="index"
 				options={{
 					title: "Main",
-					headerLeft: () => <Button onPress={handleBack} title="Back" />,
+					headerShown: false,
 				}}
 			/>
 		</Stack>

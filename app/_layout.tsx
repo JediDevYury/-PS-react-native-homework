@@ -40,7 +40,7 @@ function RootLayoutNav() {
 				screenOptions={{
 					statusBarColor: Colors.black,
 					contentStyle: {
-						backgroundColor: Colors.black,
+						backgroundColor: Colors.white,
 					},
 					headerShown: false,
 				}}
